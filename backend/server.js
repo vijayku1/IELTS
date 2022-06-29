@@ -6,17 +6,19 @@ const connectDB = require("./config/db");
 const userRoutes =require('./routes/userRoutes');
 const { notFound, errorHandler } = require("./middlewares/errorMiddleware");
 const app = express();
-
+const cors = require("cors");
+const routes = require("./routes/TodoRoute");
 dotenv.config();
 connectDB();
 app.use(express.json());
-app.get("/", (req, res) => {
-    res.send("API is running....");
-});
+app.use(cors());
+// app.get("/", (req, res) => {
+//     res.send("API is running....");
+// });
 
-app.get("/api/nodes", (req, res) => {
-    res.json(nodes);
-});
+// app.get("/api/nodes", (req, res) => {
+//     res.json(nodes);
+// });
 
 
 app.use("/api/users", userRoutes);
